@@ -12,17 +12,17 @@ pipeline {
         stage('Build Services') {
             steps {
                 dir('StudentService') {
-                    sh './mvnw clean package -DskipTests'
+                    sh 'chmod +x mvnw && ./mvnw clean package -DskipTests'
                 }
 
                 dir('RegistrationService') {
-                    sh './mvnw clean package -DskipTests'
+                    sh 'chmod +x mvnw && ./mvnw clean package -DskipTests'
                 }
 
                 dir('NotificationService') {
-                    sh './mvnw clean package -DskipTests'
+                    sh 'chmod +x mvnw && ./mvnw clean package -DskipTests'
                 }
             }
-}
+        }
     }
 }
