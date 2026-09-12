@@ -24,16 +24,6 @@ pipeline {
                 }
             }
         }
-        stage('Docker Check') {
-            steps {
-                sh 'docker version'
-            }
-        }
-        stage('Docker Checking') {
-            steps {
-                sh 'docker info'
-            }
-        }
         stage('Docker Build') {
             steps {
                 sh 'docker build -t student-service ./StudentService'
