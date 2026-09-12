@@ -26,7 +26,7 @@ public class RegistrationController {
       throw new RuntimeException("Random failure occurred during registration");
     }
     Registration result = registrationService.register(registration);
-    log.info("Registration completed successfully");
+    log.info("Registration completed successfullys");
     return result;
   }
 }
