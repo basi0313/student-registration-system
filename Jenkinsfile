@@ -29,7 +29,7 @@ pipeline {
                 sh 'docker version'
             }
         }
-         stage('Docker Check') {
+        stage('Docker Checking') {
             steps {
                 sh 'docker info'
             }
