@@ -2,15 +2,26 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
-                echo 'Code checked out successfully'
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Services') {
             steps {
-                echo 'Build will come here'
+                dir('StudentService') {
+                    bat 'mvn clean package -DskipTests'
+                }
+
+                dir('RegistrationService') {
+                    bat 'mvn clean package -DskipTests'
+                }
+
+                dir('NotificationService') {
+                    bat 'mvn clean package -DskipTests'
+                }
             }
         }
     }
