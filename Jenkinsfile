@@ -34,5 +34,12 @@ pipeline {
                 sh 'docker info'
             }
         }
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t student-service ./StudentService'
+                sh 'docker build -t registration-service ./RegistrationService'
+                sh 'docker build -t notification-service ./NotificationService'
+            }
+        }
     }
 }
