@@ -22,7 +22,7 @@ public class RegistrationService {
   public Registration register(Registration registration) {
 
     StudentResponse student = restClient.get()
-      .uri("http://localhost:8081/students/{id}", registration.getStudentId())
+      .uri("http://student-service:8081/students/{id}", registration.getStudentId())
       .retrieve()
       .body(StudentResponse.class);
 
