@@ -12,17 +12,17 @@ pipeline {
         stage('Build Services') {
             steps {
                 dir('StudentService') {
-                    bat 'mvn clean package -DskipTests'
+                    sh './mvnw clean package -DskipTests'
                 }
 
                 dir('RegistrationService') {
-                    bat 'mvn clean package -DskipTests'
+                    sh './mvnw clean package -DskipTests'
                 }
 
                 dir('NotificationService') {
-                    bat 'mvn clean package -DskipTests'
+                    sh './mvnw clean package -DskipTests'
                 }
             }
-        }
+}
     }
 }
