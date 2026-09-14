@@ -62,5 +62,22 @@ pipeline {
                 sh 'docker logout'
             }
         }
+
+        stage('Docker Compose Check') {
+            steps {
+                sh 'docker compose version'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    docker compose pull
+                    docker compose up -d
+                '''
+            }
+        }
+
+        
     }
 }
