@@ -18,7 +18,7 @@ public class RegistrationController {
 
   @PostMapping
   public Registration register(@RequestBody Registration registration) {
-    log.info("Received registration request");
+    log.info("Received registration request  working");
     // generate random number between 0 to 10
     int randomNumber = (int) (Math.random() * 11);
     if (randomNumber < 5) {
