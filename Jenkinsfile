@@ -73,6 +73,7 @@ pipeline {
             steps {
                 sh '''
                     docker compose pull student-service registration-service notification-service
+                    docker rm -f student-service registration-service notification-service || true
                     docker compose up -d --no-deps student-service registration-service notification-service
                 '''
             }
