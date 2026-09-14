@@ -72,8 +72,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    docker compose pull
-                    docker compose up -d
+                    docker compose pull student-service registration-service notification-service
+                    docker compose up -d student-service registration-service notification-service
                 '''
             }
         }
