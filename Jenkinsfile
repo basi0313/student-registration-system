@@ -24,11 +24,42 @@ pipeline {
                 }
             }
         }
+
         stage('Docker Build') {
             steps {
-                sh 'docker build -t student-service ./StudentService'
-                sh 'docker build -t registration-service ./RegistrationService'
-                sh 'docker build -t notification-service ./NotificationService'
+                sh 'docker build -t basi0304/student-service:latest ./StudentService'
+                sh 'docker build -t basi0304/registration-service:latest ./RegistrationService'
+                sh 'docker build -t basi0304/notification-service:latest ./NotificationService'
+            }
+        }
+
+        stage('Docker Login') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                sh 'docker push basi0304/student-service:latest'
+                sh 'docker push basi0304/registration-service:latest'
+                sh 'docker push basi0304/notification-service:latest'
+            }
+        }
+
+        stage('Docker Logout') {
+            steps {
+                sh 'docker logout'
             }
         }
     }
