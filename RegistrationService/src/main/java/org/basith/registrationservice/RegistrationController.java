@@ -22,7 +22,7 @@ public class RegistrationController {
     // generate random number between 0 to 10
     int randomNumber = (int) (Math.random() * 11);
     if (randomNumber < 5) {
-      log.warn("Random failure occurred during registration");
+      log.warn("Random failure occurred during registrations");
       throw new RuntimeException("Random failure occurred during registration");
     }
     Registration result = registrationService.register(registration);
