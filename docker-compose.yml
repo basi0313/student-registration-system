@@ -151,6 +151,7 @@ services:
 networks:
   microservice-network:
     name: microservice-network
+    external: true
 
 
 volumes:
