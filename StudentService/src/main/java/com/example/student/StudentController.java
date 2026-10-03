@@ -18,7 +18,7 @@ public class StudentController {
 
   @PostMapping
   public Student createStudent(@RequestBody Student student) {
-    log.info("Received request to create a student");
+    log.info("Received request to create a student v2");
     return studentService.createStudent(student);
   }
 

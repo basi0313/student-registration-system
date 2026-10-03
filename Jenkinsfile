@@ -87,6 +87,14 @@ pipeline {
                         sh 'docker compose version'
                     }
                 }
+
+                stage('Kubernetes Check') {
+                    steps {
+                        sh 'kubectl version --client'
+                        sh 'kubectl config current-context'
+                        sh 'kubectl get nodes'
+                    }
+                }
             }
         }
 
@@ -119,17 +127,16 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Student Service to Kubernetes') {
             steps {
                 sh '''
-                    docker compose pull student-service registration-service notification-service
+                    kubectl set image deployment/student-service \
+                        student-service=basi0304/student-service:latest
 
-                    docker rm -f student-service registration-service notification-service || true
+                    kubectl rollout status deployment/student-service --timeout=120s
 
-                    docker compose up -d --no-deps \
-                        student-service \
-                        registration-service \
-                        notification-service
+                    kubectl get deployment student-service -o wide
+                    kubectl get pods -l app=student-service
                 '''
             }
         }
